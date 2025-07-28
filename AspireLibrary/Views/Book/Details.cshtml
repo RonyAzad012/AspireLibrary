@@ -1,0 +1,18 @@
+﻿@model Book
+@{
+    ViewData["Title"] = "Book Details";
+}
+
+<h2>@Model.Title</h2>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <p><strong>Author:</strong> @Model.Author</p>
+        <p><strong>Publisher:</strong> @Model.Publisher</p>
+        <p><strong>ISBN:</strong> @Model.ISBN</p>
+        <p><strong>Copies:</strong> @Model.AvailableCopies / @Model.TotalCopies</p>
+        <p><strong>Category:</strong> @Model.Category?.CategoryName</p>
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-outline-primary mt-3">Back to List</a>
