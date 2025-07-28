@@ -1,4 +1,6 @@
-﻿namespace AspireLibrary.Models
+﻿using AspireLibrary.Data;
+
+namespace AspireLibrary.Models
 {
     public class BorrowRecord
     {
