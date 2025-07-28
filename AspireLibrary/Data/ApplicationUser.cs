@@ -12,5 +12,6 @@ namespace AspireLibrary.Data
 
         [Display(Name = "Profile Image URL")]
         public string ProfileImageUrl { get; set; }
+        public string Role { get; internal set; }
     }
 }
