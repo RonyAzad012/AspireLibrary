@@ -1,0 +1,19 @@
+﻿@model BorrowRecord
+
+@{
+    ViewData["Title"] = "Borrow Record Details";
+}
+
+<h2>Borrow Record Details</h2>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <h5 class="card-title">Book: @Model.Book.Title</h5>
+        <p><strong>Borrowed By:</strong> @Model.User.FullName (@Model.User.Email)</p>
+        <p><strong>Borrow Date:</strong> @Model.BorrowDate.ToString("f")</p>
+        <p><strong>Return Date:</strong> @(Model.ReturnDate.HasValue ? Model.ReturnDate.Value.ToString("f") : "Not Returned")</p>
+        <p><strong>Fine Amount:</strong> @Model.FineAmount.ToString("C")</p>
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-outline-primary mt-3">Back to List</a>
