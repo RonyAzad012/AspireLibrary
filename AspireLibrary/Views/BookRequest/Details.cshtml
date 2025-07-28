@@ -1,0 +1,18 @@
+﻿@model BookRequest
+
+@{
+    ViewData["Title"] = "Request Details";
+}
+
+<h2>Request Details</h2>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <h5 class="card-title">Book: @Model.Book.Title</h5>
+        <p><strong>Requested By:</strong> @Model.User.FullName (@Model.User.Email)</p>
+        <p><strong>Status:</strong> @Model.Status</p>
+        <p><strong>Date:</strong> @Model.RequestDate.ToString("f")</p>
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-outline-primary mt-3">Back</a>

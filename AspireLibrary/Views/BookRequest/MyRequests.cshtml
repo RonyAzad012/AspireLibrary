@@ -1,0 +1,44 @@
+﻿@model IEnumerable<BookRequest>
+
+@{
+    ViewData["Title"] = "My Book Requests";
+}
+
+<h2>My Book Requests</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Book Title</th>
+            <th>Status</th>
+            <th>Requested On</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var req in Model)
+        {
+            <tr>
+                <td>@req.Book.Title</td>
+                <td>
+                    @if (req.Status == "Approved")
+                    {
+                        <span class="badge bg-success">Approved</span>
+                    }
+                    else if (req.Status == "Rejected")
+                    {
+                        <span class="badge bg-danger">Rejected</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning text-dark">Pending</span>
+                    }
+                </td>
+                <td>@req.RequestDate.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@req.BookRequestId" class="btn btn-sm btn-info">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
