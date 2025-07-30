@@ -1,0 +1,26 @@
+﻿@model FineSettings
+@{
+    ViewData["Title"] = "Edit Fine Settings";
+}
+
+<h2>✏️ Edit Fine Settings</h2>
+
+<form asp-action="Edit" method="post" class="mt-3">
+    <input type="hidden" asp-for="FineSettingsId" />
+    <div class="mb-3">
+        <label asp-for="FinePerDay" class="form-label"></label>
+        <input asp-for="FinePerDay" class="form-control" />
+        <span asp-validation-for="FinePerDay" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="MaxFine" class="form-label"></label>
+        <input asp-for="MaxFine" class="form-control" />
+        <span asp-validation-for="MaxFine" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">💾 Save Changes</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

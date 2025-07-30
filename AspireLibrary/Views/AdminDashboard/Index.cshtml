@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h2 class="mb-4">📊 Admin Dashboard</h2>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card bg-primary text-white shadow">
+            <div class="card-body">
+                <h5>Total Books</h5>
+                <h3>@ViewBag.TotalBooks</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-success text-white shadow">
+            <div class="card-body">
+                <h5>Total Categories</h5>
+                <h3>@ViewBag.TotalCategories</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-info text-white shadow">
+            <div class="card-body">
+                <h5>Total Users</h5>
+                <h3>@ViewBag.TotalUsers</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <canvas id="borrowChart"></canvas>
+    </div>
+    <div class="col-md-6">
+        <canvas id="fineChart"></canvas>
+    </div>
+</div>
+<button id="sendRemindersBtn" class="btn btn-warning">Send Reminder Emails Now</button>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+
+        const borrowChart = document.getElementById('borrowChart').getContext('2d');
+        new Chart(borrowChart, {
+            type: 'bar',
+            data: {
+                labels: ['Borrowed Books'],
+                datasets: [{
+                    label: 'Total Borrowed',
+                    data: [@ViewBag.TotalBorrowed],
+                    backgroundColor: '#ffc107'
+                }]
+            }
+        });
+
+        const fineChart = document.getElementById('fineChart').getContext('2d');
+        new Chart(fineChart, {
+            type: 'doughnut',
+            data: {
+                labels: ['Fines Collected'],
+                datasets: [{
+                    label: '৳ Fines',
+                    data: [@ViewBag.TotalFines],
+                    backgroundColor: ['#dc3545']
+                }]
+            }
+        });
+                document.getElementById("sendRemindersBtn").addEventListener("click", function() {
+            fetch('/Reminder/SendReminders', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => Swal.fire("Done", data.message, "success"))
+                .catch(() => Swal.fire("Error", "Failed to send reminders.", "error"));
+        });
+    </script>
+}

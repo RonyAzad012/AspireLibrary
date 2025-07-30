@@ -1,0 +1,35 @@
+﻿@model FineSettings
+@{
+    ViewData["Title"] = "Fine Settings";
+}
+
+<h2>📌 Fine Settings</h2>
+
+@if (Model != null)
+{
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>Fine Per Day (৳)</th>
+                <th>Max Fine (৳)</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.FinePerDay</td>
+                <td>@Model.MaxFine</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@Model.FineSettingsId" class="btn btn-sm btn-warning">Edit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">
+        No fine settings found. <a asp-action="Create" class="btn btn-sm btn-success">Create Default</a>
+    </div>
+}
+

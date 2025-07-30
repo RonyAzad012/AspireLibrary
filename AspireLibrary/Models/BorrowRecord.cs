@@ -12,5 +12,6 @@ namespace AspireLibrary.Models
         public DateTime BorrowDate { get; set; }
         public DateTime? ReturnDate { get; set; }
         public decimal FineAmount { get; set; }
+        public object Id { get; internal set; }
     }
 }
